@@ -50,6 +50,9 @@ namespace Sollar.Models
         [Column("complemento")]
         public string Complemento { get; set; }
 
-
+        [Required]
+        [Column("id_usuario")]
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }
