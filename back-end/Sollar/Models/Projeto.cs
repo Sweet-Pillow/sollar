@@ -51,6 +51,10 @@ namespace Sollar.Models
         public string Complemento { get; set; }
 
         [Required]
+        [Column("data_registro")]
+        public DateTime DataRegistro { get; set; }
+
+        [Required]
         [Column("id_usuario")]
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }

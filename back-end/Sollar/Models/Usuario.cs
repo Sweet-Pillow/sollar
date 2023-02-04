@@ -77,5 +77,9 @@ namespace Sollar.Models
 
         [Column("complemento")]
         public string Complemento { get; set; }
+
+        [Required]
+        [Column("data_registro")]
+        public DateTime DataRegistro { get; set; }
     }
 }
