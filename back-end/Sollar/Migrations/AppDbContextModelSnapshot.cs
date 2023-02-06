@@ -120,14 +120,8 @@ namespace Sollar.Migrations
                         .HasColumnName("cidade");
 
                     b.Property<string>("Complemento")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("complemento");
-
-                    b.Property<string>("ConfirmarSenha")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -139,7 +133,6 @@ namespace Sollar.Migrations
                         .HasColumnName("data_registro");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("email");
 
@@ -168,10 +161,9 @@ namespace Sollar.Migrations
                         .HasColumnType("text")
                         .HasColumnName("primeiro_nome");
 
-                    b.Property<string>("Senha")
+                    b.Property<byte[]>("Senha")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasColumnType("bytea")
                         .HasColumnName("senha");
 
                     b.Property<string>("Sobrenome")
@@ -180,7 +172,6 @@ namespace Sollar.Migrations
                         .HasColumnName("sobrenome");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("telefone");
 

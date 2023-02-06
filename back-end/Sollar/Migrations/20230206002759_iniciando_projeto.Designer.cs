@@ -12,8 +12,8 @@ using Sollar.Data;
 namespace Sollar.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230204013740_AdicionadoDataDeRegistro")]
-    partial class AdicionadoDataDeRegistro
+    [Migration("20230206002759_iniciando_projeto")]
+    partial class iniciandoprojeto
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,14 +123,8 @@ namespace Sollar.Migrations
                         .HasColumnName("cidade");
 
                     b.Property<string>("Complemento")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("complemento");
-
-                    b.Property<string>("ConfirmarSenha")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("Cpf")
                         .IsRequired()
@@ -142,7 +136,6 @@ namespace Sollar.Migrations
                         .HasColumnName("data_registro");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("email");
 
@@ -171,10 +164,9 @@ namespace Sollar.Migrations
                         .HasColumnType("text")
                         .HasColumnName("primeiro_nome");
 
-                    b.Property<string>("Senha")
+                    b.Property<byte[]>("Senha")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasColumnType("bytea")
                         .HasColumnName("senha");
 
                     b.Property<string>("Sobrenome")
@@ -183,7 +175,6 @@ namespace Sollar.Migrations
                         .HasColumnName("sobrenome");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("telefone");
 

@@ -15,18 +15,9 @@ namespace Sollar.Models
         [Column("login")]
         public string Login { get; set; }
 
-        [Required(ErrorMessage = "Senha necessario")]
-        [StringLength(20, ErrorMessage = "Deve ter entre 5 a 20 caracteres.", MinimumLength = 5)]
-        [DataType(DataType.Password)]
+        [Required]
         [Column("senha")]
-        public string Senha { get; set; }
-
-
-        [Required(ErrorMessage = "É necessario confirmar a senha.")]
-        [StringLength(20, ErrorMessage = "Deve ter entre 5 a 20 caracteres.", MinimumLength = 5)]
-        [DataType(DataType.Password)]
-        [Compare("confirmar_senha")]
-        public string ConfirmarSenha { get; set; }
+        public byte[] Senha { get; set; }
 
         [Required]
         [Column("primeiro_nome")]
@@ -37,21 +28,16 @@ namespace Sollar.Models
         public string Sobrenome { get; set; }
 
         [Required]
-        [RegularExpression(@"\d{3}\.\d{3}\.\d{3}-\d{2}", ErrorMessage = "Formato invalido de CPF. Use xxx.xxx.xxx-xx")]
         [Column("cpf")]
         public string Cpf { get; set; }
 
-        [EmailAddress]
         [Column("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
-        [Phone]
-        [RegularExpression(@"\(\d{2}\)\s\d{4}-\d{4}", ErrorMessage = "Formato de numero de telefone invalido. Use (xx) xxxx-xxxx")]
         [Column("telefone")]
-        public string Telefone { get; set; }
+        public string? Telefone { get; set; }
 
         [Required]
-        [RegularExpression(@"[0-9]{5}-[0-9]{3}", ErrorMessage = "Formato de Cep invalido. Use xxxxx-xxx")]
         [Column("cep")]
         public string Cep { get; set; }
 
@@ -76,7 +62,7 @@ namespace Sollar.Models
         public string Numero { get; set; }
 
         [Column("complemento")]
-        public string Complemento { get; set; }
+        public string? Complemento { get; set; }
 
         [Required]
         [Column("data_registro")]
