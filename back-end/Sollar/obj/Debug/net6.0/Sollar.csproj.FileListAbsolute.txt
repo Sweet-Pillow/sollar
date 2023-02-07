@@ -52,3 +52,11 @@ C:\Users\danie\git\sollar\back-end\Sollar\obj\Debug\net6.0\refint\Sollar.dll
 C:\Users\danie\git\sollar\back-end\Sollar\obj\Debug\net6.0\Sollar.pdb
 C:\Users\danie\git\sollar\back-end\Sollar\obj\Debug\net6.0\Sollar.genruntimeconfig.cache
 C:\Users\danie\git\sollar\back-end\Sollar\obj\Debug\net6.0\ref\Sollar.dll
+C:\Users\danie\git\sollar\back-end\Sollar\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\danie\git\sollar\back-end\Sollar\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\danie\git\sollar\back-end\Sollar\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\danie\git\sollar\back-end\Sollar\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\danie\git\sollar\back-end\Sollar\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\danie\git\sollar\back-end\Sollar\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\danie\git\sollar\back-end\Sollar\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\danie\git\sollar\back-end\Sollar\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

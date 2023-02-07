@@ -7,10 +7,10 @@ using System.Text;
 
 namespace Sollar.Repositories.Implementations
 {
-    public class ProjetoRepositorie : IProjetoRepositorie
+    public class ProjetoRepository : IProjetoRepository
     {
         private readonly AppDbContext _context;
-        public ProjetoRepositorie(AppDbContext context)
+        public ProjetoRepository(AppDbContext context)
         {
             _context = context;
         }

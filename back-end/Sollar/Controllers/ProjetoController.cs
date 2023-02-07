@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Sollar.DTOs;
 using Sollar.Repositories.Interfaces;
 
@@ -6,10 +7,11 @@ namespace Sollar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProjetoController : Controller
     {
-        private readonly IProjetoRepositorie _projetoRepositorie;
-        public ProjetoController(IProjetoRepositorie projetoRepositorie)
+        private readonly IProjetoRepository _projetoRepositorie;
+        public ProjetoController(IProjetoRepository projetoRepositorie)
         {
             _projetoRepositorie = projetoRepositorie;
         }

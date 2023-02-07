@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Sollar.DTOs;
 using Sollar.Repositories.Interfaces;
 
@@ -8,13 +9,14 @@ namespace Sollar.Controllers
     [ApiController]
     public class UsuarioController : Controller
     {
-        private readonly IUsuarioRepositorie _usuarioRepositorie;
-        public UsuarioController(IUsuarioRepositorie usuarioRepositorie)
+        private readonly IUsuarioRepository _usuarioRepositorie;
+        public UsuarioController(IUsuarioRepository usuarioRepositorie)
         {
             _usuarioRepositorie = usuarioRepositorie;
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> PegarTodosUsuarios()
         {
             try
@@ -29,6 +31,7 @@ namespace Sollar.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> PegarUsuarioPorId([FromRoute]int id)
         {
             try
@@ -57,6 +60,7 @@ namespace Sollar.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> AtualizarUsuario(AtualizarUsuarioDTO atualizarUsuario, [FromRoute]int id)
         {
             try
@@ -71,6 +75,7 @@ namespace Sollar.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletarUsuario([FromRoute]int id)
         {
             try

@@ -6,10 +6,10 @@ using Sollar.Utils;
 
 namespace Sollar.Repositories.Implementations
 {
-    public class UsuarioRepositorie : IUsuarioRepositorie
+    public class UsuarioRepository : IUsuarioRepository
     {
         private readonly AppDbContext _context;
-        public UsuarioRepositorie(AppDbContext context)
+        public UsuarioRepository(AppDbContext context)
         {
             _context = context;
         }

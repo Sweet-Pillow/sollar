@@ -3,7 +3,7 @@ using Sollar.Models;
 
 namespace Sollar.Repositories.Interfaces
 {
-    public interface IProjetoRepositorie
+    public interface IProjetoRepository
     {
         public Task<IList<Projeto>> PegarTodosProjetos();
         public Task<Projeto?> PegarProjetoPeloId(int id);

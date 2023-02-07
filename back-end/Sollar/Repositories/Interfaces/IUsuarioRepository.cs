@@ -3,7 +3,7 @@ using Sollar.Models;
 
 namespace Sollar.Repositories.Interfaces
 {
-    public interface IUsuarioRepositorie
+    public interface IUsuarioRepository
     {
         public Task<IList<Usuario>> PegarTodosUsuarios();
         public Task<Usuario> PegarUsuarioPorId(int id);
