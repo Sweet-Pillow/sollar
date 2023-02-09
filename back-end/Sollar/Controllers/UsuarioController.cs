@@ -45,6 +45,48 @@ namespace Sollar.Controllers
             }
         }
 
+        [HttpGet("verificalogin/{login}")]
+        public async Task<IActionResult> VerificaLoginExiste([FromRoute] string login)
+        {
+            try
+            {
+                var _login = await _usuarioRepositorie.VerificaLoginExiste(login);
+                return Ok(_login);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("verificaemail/{email}")]
+        public async Task<IActionResult> VerificaEmailExiste([FromRoute] string email)
+        {
+            try
+            {
+                var _email = await _usuarioRepositorie.VerificaEmailExiste(email);
+                return Ok(_email);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("verificacpf/{cpf}")]
+        public async Task<IActionResult> VerificaCpfExiste([FromRoute] string cpf)
+        {
+            try
+            {
+                var _cpf = await _usuarioRepositorie.VerificaCpfExiste(cpf);
+                return Ok(_cpf);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CriarUsuario(CriarUsuarioDTO criarUsuario)
         {

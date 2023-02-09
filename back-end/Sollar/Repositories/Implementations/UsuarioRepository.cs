@@ -105,5 +105,29 @@ namespace Sollar.Repositories.Implementations
             if (usuario == null) throw new ArgumentNullException("ID não encontrado");
             return usuario;
         }
+
+        public async Task<bool> VerificaCpfExiste(string cpf)
+        {
+            var usuario = await _context.Usuario.Where(u => u.Cpf == cpf)
+                                            .FirstOrDefaultAsync();
+
+            return usuario == null ? false : true;
+        }
+
+        public async Task<bool> VerificaEmailExiste(string email)
+        {
+            var usuario = await _context.Usuario.Where(u => u.Email == email)
+                                            .FirstOrDefaultAsync();
+
+            return usuario == null ? false : true;
+        }
+
+        public async Task<bool> VerificaLoginExiste(string login)
+        {
+            var usuario = await _context.Usuario.Where(u => u.Login == login)
+                                            .FirstOrDefaultAsync();
+
+            return usuario == null ? false : true;
+        }
     }
 }
