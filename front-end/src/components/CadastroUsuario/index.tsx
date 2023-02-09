@@ -60,6 +60,24 @@ export default function CadastroUsuario(){
 
     function Cadastrar(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
+        
+    }
+
+    function AutoPreencher(value: string){
+        if (value.length === 9){
+            fetch(`http://viacep.com.br/ws/${value.replace('-','')}/json/`,
+            {
+                method: 'GET',
+
+            })
+            .then(res => res.json())
+            .then(data => {
+                setComplemento(data.complemento)
+                setBairro(data.bairro)
+                setCidade(data.localidade)
+                setEstado(data.uf)
+            })
+        }
     }
 
     return (
@@ -186,6 +204,7 @@ export default function CadastroUsuario(){
                         value={cep}
                         onChange={(event) => 
                             {
+                                AutoPreencher(event.target.value);
                                 setCep(MascaraCep(event.target.value));
                             }
                         }
@@ -213,9 +232,9 @@ export default function CadastroUsuario(){
                             onChange={(e) => setEstado(e.target.value)}
                         >
                             {estadosDisponiveis?.map((item) =>{
-                                console.log(item)
+                                // console.log(item)
                                 return (
-                                    <option key={item.id} value={item.nome}>{item.nome}</option> 
+                                    <option key={item.id} value={item.sigla}>{item.nome}</option> 
                                 )
                             })}
                         </select>
@@ -238,6 +257,7 @@ export default function CadastroUsuario(){
                     Cidade
                     </label>
                     <input
+                        value={cidade}
                         onChange={(event) => 
                             {
                                 setCidade(event.target.value);
@@ -261,6 +281,7 @@ export default function CadastroUsuario(){
                     Bairro
                     </label>
                     <input
+                        value={bairro}
                         onChange={(event) => 
                             {
                                 setBairro(event.target.value);
@@ -281,6 +302,7 @@ export default function CadastroUsuario(){
                     Endereco
                     </label>
                     <input
+                        value={endereco}
                         onChange={(event) => 
                             {
                                 setEndereco(event.target.value);
@@ -324,6 +346,7 @@ export default function CadastroUsuario(){
                     Complemento
                     </label>
                     <input
+                        value={complemento}
                         onChange={(event) => 
                             {
                                 setComplemento(event.target.value);
