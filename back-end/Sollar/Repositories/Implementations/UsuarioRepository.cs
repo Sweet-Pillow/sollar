@@ -1,4 +1,5 @@
-﻿using Sollar.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Sollar.Data;
 using Sollar.DTOs;
 using Sollar.Models;
 using Sollar.Repositories.Interfaces;
@@ -40,6 +41,21 @@ namespace Sollar.Repositories.Implementations
 
         public async Task<Usuario> CriarUsuario(CriarUsuarioDTO criarUsuario)
         {
+            var verificarLoginExistente = await _context.Usuario.Where(u => u.Login == criarUsuario.Login)
+                                                                .FirstOrDefaultAsync();
+
+            if (verificarLoginExistente != null) throw new Exception("Login já existe"); 
+
+            var verificarCpfExistente = await _context.Usuario.Where(u => u.Cpf == criarUsuario.Cpf)
+                                                                .FirstOrDefaultAsync();
+
+            if (verificarCpfExistente != null) throw new Exception("Cpf já existe");
+
+            var verificarEmailExistente = await _context.Usuario.Where(u => u.Email == criarUsuario.Email)
+                                                                .FirstOrDefaultAsync();
+
+            if (verificarEmailExistente != null) throw new Exception("Email já existe");
+
             Usuario usuario = new()
             {
                 Login = criarUsuario.Login,
