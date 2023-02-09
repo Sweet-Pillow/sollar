@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom'
 import { ProtectedLayout } from "./components/ProtectedLayout";
 import { Login } from "./components/Login";
 import CadastroUsuario from "./components/CadastroUsuario";
+import TabelaUsuario from "./components/TabelaUsuarios";
 
 export default function App(){
     
@@ -10,9 +11,7 @@ export default function App(){
         <AuthProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/profile" element={<ProtectedLayout>
-                            <h2>Esse é o componente profile</h2>
-                        </ProtectedLayout>}>
+                    <Route path="/profiles" element={<ProtectedLayout><TabelaUsuario /></ProtectedLayout>}>
                     </Route>
                     <Route path="/login" element={<Login />}>
                     </Route>

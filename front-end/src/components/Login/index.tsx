@@ -71,7 +71,7 @@ export const Login = () => {
                                         setSenha(event.target.value);
                                     }
                                 }
-                                type="text"
+                                type="password"
                                 name="usuario-senha"
                                 id="usuario-senha"
                                 placeholder="Senha"
