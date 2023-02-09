@@ -13,7 +13,7 @@ export const Login = () => {
         try {
             await auth.authenticate(values.login, values.senha)        
 
-            history('/profile');
+            history('/profiles');
 
         } catch (error) {
             setErro(true);

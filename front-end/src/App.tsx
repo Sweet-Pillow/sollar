@@ -17,7 +17,7 @@ export default function App(){
                     <Route path="/login" element={<Login />}>
                     </Route>
 
-                    <Route path="/" element={<Login />}>
+                    <Route path="/*" element={<Login />}>
                     </Route>
 
                     <Route path="/cadastro" element={<CadastroUsuario />}>

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-
-interface IEstado{
-    id: Number,
-    sigla: string,
-    nome: string
-}
+import { API } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export default function CadastroUsuario(){
+
+    const history = useNavigate();
+
     const [login, setLogin] = useState<string>("")
     const [senha, setSenha] = useState<string>("")
     const [confirmarSenha, setConfirmarSenha] = useState<string>("")
@@ -24,6 +23,10 @@ export default function CadastroUsuario(){
     const [complemento, setComplemento] = useState<string>("")
 
     const [estadosDisponiveis, setEstadosDisponiveis] = useState<Array<Object>>();
+    const [erroSenha, setErroSenha] = useState<boolean>(false);
+    const [erroLogin, setErroLogin] = useState<boolean>(false);
+    const [erroEmail, setErroEmail] = useState<boolean>(false);
+    const [erroCpf, setErroCpf] = useState<boolean>(false);
 
     useEffect(() => {
         fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados', {
@@ -58,9 +61,51 @@ export default function CadastroUsuario(){
         .replace(/(-\d{3})\d+?$/, '$1')
     }
 
-    function Cadastrar(event: React.FormEvent<HTMLFormElement>){
+    async function Cadastrar(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
-        
+        if(senha != confirmarSenha){
+            setErroSenha(true);
+        }
+
+        if(!erroCpf && !erroEmail && !erroLogin && !erroSenha){
+            try {
+                const request = await API.post('api/Usuario',{
+                    login: login,
+                    senha: senha,
+                    confirmarSenha: confirmarSenha,
+                    primeiroNome: primeiroNome,
+                    sobrenome: sobrenome,
+                    cpf: cpf,
+                    email: email,
+                    telefone: telefone,
+                    cep: cep,
+                    estado: estado,
+                    cidade: cidade,
+                    bairro: bairro,
+                    endereco: endereco,
+                    numero: numero,
+                    complemento: complemento
+                })
+                .then(resp => history("/login"))
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
+
+    async function VerificaLogin(){
+        const request = await API.get('api/Usuario/verificalogin/'+login);
+        setErroLogin(request.data);
+    }
+
+    async function VerificaCpf(){
+        const request = await API.get('api/Usuario/verificacpf/'+cpf);
+        setErroCpf(request.data);
+    }
+
+    async function VerificaEmail(){
+        const request = await API.get('api/Usuario/verificaemail/'+email);
+        setErroEmail(request.data);
     }
 
     function AutoPreencher(value: string){
@@ -93,6 +138,7 @@ export default function CadastroUsuario(){
                     Primeiro Nome
                     </label>
                     <input
+                        value={primeiroNome}
                         onChange={(event) => 
                             {
                                 setPrimeiroNome(event.target.value);
@@ -113,6 +159,7 @@ export default function CadastroUsuario(){
                     Sobrenome
                     </label>
                     <input
+                        value={sobrenome}
                         onChange={(event) => 
                             {
                                 setSobrenome(event.target.value);
@@ -126,7 +173,11 @@ export default function CadastroUsuario(){
                     />
                 </div>
             </div>
+            
+            <div className="flex w-full justify-start">
+                {erroEmail? <h2 className="text-red-500 ">Email Já Existe*</h2>: ""}
 
+            </div>
             <div className="w-full px-3 flex flex-row justify-between">
                 <div className="mb-5">
                     <label
@@ -136,6 +187,8 @@ export default function CadastroUsuario(){
                     Email
                     </label>
                     <input
+                        value={email}
+                        onBlur={VerificaEmail}
                         onChange={(event) => 
                             {
                                 setEmail(event.target.value);
@@ -171,6 +224,10 @@ export default function CadastroUsuario(){
                 </div>
             </div>
             
+            <div className="flex w-full justify-start">
+                {erroCpf? <h2 className="text-red-500">Cpf Já Existe*</h2>: ""}
+
+            </div>
             <div className="w-full px-3 flex flex-row justify-between">
                 <div className="mb-5">
                     <label
@@ -180,6 +237,7 @@ export default function CadastroUsuario(){
                     Cpf
                     </label>
                     <input
+                        onBlur={VerificaCpf}
                         value={cpf}
                         onChange={(event) => 
                             {
@@ -231,6 +289,7 @@ export default function CadastroUsuario(){
                             value={estado}
                             onChange={(e) => setEstado(e.target.value)}
                         >
+                            <option value="" selected disabled>Selecione o estado</option>
                             {estadosDisponiveis?.map((item) =>{
                                 // console.log(item)
                                 return (
@@ -326,6 +385,7 @@ export default function CadastroUsuario(){
                     Numero
                     </label>
                     <input
+                        value={numero}
                         onChange={(event) => 
                             {
                                 setNumero(event.target.value);
@@ -360,7 +420,8 @@ export default function CadastroUsuario(){
                     />
                 </div>
             </div>
-
+            
+            {erroLogin? <h2 className="text-red-500">Login Já Existe</h2>: ""}
             <div className="w-full px-3">
                 <div className="mb-5">
                     <label
@@ -370,6 +431,8 @@ export default function CadastroUsuario(){
                     Login
                     </label>
                     <input
+                        value={login}
+                        onBlur={VerificaLogin}
                         onChange={(event) => 
                             {
                                 setLogin(event.target.value);
@@ -383,7 +446,7 @@ export default function CadastroUsuario(){
                     />
                 </div>
             </div>
-
+            {erroSenha? <h2 className="text-red-500">Senhas diferentes.*</h2>: ""}
             <div className="w-full px-3">
                 <div className="mb-5">
                     <label
