@@ -24,14 +24,14 @@ export const Login = () => {
     const[senha, setSenha] = useState<string>("");
     const[erro, setErro] = useState<boolean>(false);
 
-    function createClient(event: React.FormEvent<HTMLFormElement>){
+    function Logar(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         onFinish({login, senha});
     }
 
     return (
         <div className="flex justify-center items-center h-screen">
-            <form onSubmit={createClient} className="bg-white rounded-lg shadow-md border border-black border-solid flex flex-col items-center justify-center p-12 w-2/5">
+            <form onSubmit={Logar} className="bg-white rounded-lg shadow-md border border-black border-solid flex flex-col items-center justify-center p-12 w-2/5">
                     <h2 className="text-lg font-semibold mb-4">Fazer Login</h2>
                     {erro? <ErroLogin/> : ""}
                     <div className="w-full px-3">
@@ -85,7 +85,7 @@ export const Login = () => {
                         type="submit"
                         className="bg-indigo-500 w-full hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg"
                     >
-                    Create account
+                    Login
                     </button>
                 </div>
             </form>

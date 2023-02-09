@@ -2,6 +2,7 @@ import { AuthProvider } from "./context/AuthProvider/Index";
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
 import { ProtectedLayout } from "./components/ProtectedLayout";
 import { Login } from "./components/Login";
+import CadastroUsuario from "./components/CadastroUsuario";
 
 export default function App(){
     
@@ -17,6 +18,9 @@ export default function App(){
                     </Route>
 
                     <Route path="/" element={<Login />}>
+                    </Route>
+
+                    <Route path="/cadastro" element={<CadastroUsuario />}>
                     </Route>
                 </Routes>
             </BrowserRouter>
