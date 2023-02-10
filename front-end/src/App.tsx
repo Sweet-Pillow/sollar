@@ -10,18 +10,18 @@ export default function App(){
     return(
         <AuthProvider>
             <BrowserRouter>
-                <Routes>
-                    <Route path="/profiles" element={<ProtectedLayout><TabelaUsuario /></ProtectedLayout>}>
-                    </Route>
-                    <Route path="/login" element={<Login />}>
-                    </Route>
+                    <Routes>
+                        <Route path="/profiles" element={<ProtectedLayout><TabelaUsuario /></ProtectedLayout>}>
+                        </Route>
+                        <Route path="/login" element={<Login />}>
+                        </Route>
 
-                    <Route path="/*" element={<Login />}>
-                    </Route>
+                        <Route path="/*" element={<Login />}>
+                        </Route>
 
-                    <Route path="/cadastro" element={<CadastroUsuario />}>
-                    </Route>
-                </Routes>
+                        <Route path="/cadastro" element={<CadastroUsuario />}>
+                        </Route>
+                    </Routes>
             </BrowserRouter>
         </AuthProvider>
     );

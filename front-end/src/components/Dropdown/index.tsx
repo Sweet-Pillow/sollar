@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-export default function Dropdown(acoes: React.Dispatch<React.SetStateAction<string | undefined>>) {
+export default function Dropdown() {
   return (
     <div className="relative text-right">
       <Menu as="div" className="relative inline-block text-left">
@@ -321,3 +321,4 @@ function DeleteActiveIcon(props) {
     </svg>
   )
 }
+

@@ -1,6 +1,4 @@
-import {Outlet} from 'react-router-dom';
-
-export default function Layout() 
+export default function Layout(children: JSX.Element) 
 {    
     return (
         <div className="flex flex-row">
@@ -132,7 +130,7 @@ export default function Layout()
             </div>
 
             <div className="ml-[240px] bg-white p-4 flex flex-1 justify-center items-center">
-                <Outlet />
+                {children}
             </div>
         </div>
     )

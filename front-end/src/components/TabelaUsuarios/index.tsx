@@ -39,7 +39,7 @@ export default function TabelaUsuario(){
                             {item.telefone}
                         </h1>
                         <div className="flex justify-end items-center pr-8">
-                            <Dropdown acoes={setAcao}/>
+                            <Dropdown />
                         </div>
                     </tr>
                 )
