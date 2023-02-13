@@ -1,11 +1,24 @@
 import { useEffect, useState } from "react"
 import { API } from "../../services/api";
-import Dropdown from "../Dropdown";
+
+interface user{
+    id: number,
+    primeiroNome: string,
+    cpf: string,
+    email: string,
+    telefone: string
+}
 
 export default function TabelaUsuario(){
 
-    const [usuarios, setUsuarios] = useState<Array<Object>>([]);
-    const [acao, setAcao] = useState<string>();
+    const [usuarios, setUsuarios] = useState<Array<user>>([{
+        id: 1,
+        primeiroNome: "Daniel",
+        cpf: "123.123.123-45",
+        email: "daniel@hotmail.com",
+        telefone: "(99) 9999-9999"
+    }]);
+    const [acao, setAcao] = useState<string>("");
 
     useEffect(() => {
         PegarTodosUsuarios();
@@ -39,7 +52,6 @@ export default function TabelaUsuario(){
                             {item.telefone}
                         </h1>
                         <div className="flex justify-end items-center pr-8">
-                            <Dropdown />
                         </div>
                     </tr>
                 )
